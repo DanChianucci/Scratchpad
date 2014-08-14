@@ -7,7 +7,7 @@ compiler:
 script: 
   - cmake -G "Unix Makefiles"
   - make
-  - helloDemo
+  - ./helloDemo
 
 branches:
   only:

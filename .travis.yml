@@ -1,0 +1,21 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+script: 
+  - cmake -G "Unix Makefiles"
+  - make
+  - helloDemo
+
+branches:
+  only:
+    - master
+
+notifications:
+  recipients:
+    - dan.chianucci@gmail.com
+  email:
+    on_success: change
+    on_failure: always

@@ -1,1 +1,6 @@
-$Id$
+--! $File:    $
+--! $Author:  $
+--! $Date:    $
+--! $Version: $
+--! $Id$
+

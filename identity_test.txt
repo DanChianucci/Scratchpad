@@ -1,8 +1,9 @@
---! $File:    $
---! $Author:  $
---! $Date:    $
---! $Version$
+--! $File:$
+--! $Author:$
+--! $Date:$
+--! $Version:$
 --! $Id$
+--! $Message:$
 
 BLA
 BLAL

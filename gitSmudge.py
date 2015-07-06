@@ -144,8 +144,8 @@ def re_clean(line,regex):
 def smudge(filename):
     branchname = getBranchName()
     numVersions = getNumVersions(filename)
-    version_str = "%s:%s"%(branchname,numVersions)
     
+    version_str = "%s:%s"%(branchname,numVersions)    
     author_str  = getCommitAuthor(filename)
     date_str    = getCommitDate(filename)
     id_str      = getCommitId(filename)
@@ -159,11 +159,9 @@ def smudge(filename):
         line = re_smudge(line,id_str,ID_REGEX);
         line = re_smudge(line,msg_str,MSG_REGEX);
         sys.stdout.write(line)
-        sys.stderr.write(line)
 
 def clean(filename):
     for line in sys.stdin:
-        sys.stderr.write(line)
         line = re_clean(line,AUTHOR_REGEX);
         line = re_clean(line,FILE_REGEX)
         line = re_clean(line,DATE_REGEX)
@@ -171,13 +169,9 @@ def clean(filename):
         line = re_clean(line,ID_REGEX)
         line = re_clean(line,MSG_REGEX)
         sys.stdout.write(line)
-        sys.stderr.write(line)
-
 
 
 if __name__ == "__main__":
-
-
     if len(sys.argv) < 2:
         _error("Error: missing commandline parameters %s or %s!" % (SMUDGE, CLEAN))
     if len(sys.argv) < 3:

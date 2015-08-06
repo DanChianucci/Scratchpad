@@ -1,15 +1,6 @@
 #!/usr/bin/env python
-# coding: utf-8
-
 """
-    git filter to change committer date in version info file.
-    
-    more info in README:
-    https://github.com/jedie/python-code-snippets/tree/master/CodeSnippets/git/#readme
-    
-    :copyleft: 2012 by Jens Diemer
-    :license: GNU GPL v3 or above
-    :homepage: https://github.com/jedie/python-code-snippets/tree/master/CodeSnippets/git/
+    Git filter to smudge various information into file headers.
 """
 
 import sys
@@ -20,7 +11,9 @@ import re
 
 
 
-#regex's
+################################################################################
+###  REGEX
+################################################################################
 VER_REGEX       = re.compile(r"(\$Version:?)(.*)(\$)",flags=re.IGNORECASE)
 FILE_REGEX      = re.compile(r"(\$File:?)(.*)(\$)",flags=re.IGNORECASE)
 DATE_REGEX      = re.compile(r"(\$Date:?)(.*)(\$)",flags=re.IGNORECASE)
@@ -29,17 +22,14 @@ ID_REGEX        = re.compile(r"(\$Id:?)(.*)(\$)",flags=re.IGNORECASE)
 MSG_REGEX       = re.compile(r"(\$Message:?)(.*)(\$)",flags=re.IGNORECASE)
 
 
-################################################################################
-###  Main Functionality
-################################################################################
+
 SMUDGE = "smudge"
 CLEAN  = "clean"
 
-def _error(msg):
-    sys.stderr.write(msg + "\n")
-    sys.stderr.flush()
-    sys.exit(1)
 
+################################################################################
+###  Git Commands
+################################################################################
 def getBranchName():
     try:
         process = subprocess.Popen(["/usr/bin/git", "symbolic-ref", "HEAD"],
@@ -134,6 +124,13 @@ def getCommitMessage(filename):
     return msg
 
 
+################################################################################
+###  Main Functionality
+################################################################################
+def _error(msg):
+    sys.stderr.write(msg + "\n")
+    sys.stderr.flush()
+    sys.exit(1)
 
 def re_smudge(line,repl,regex):
     return regex.sub("\\1\t"+str(repl)+" \\3",line)
